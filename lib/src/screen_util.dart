@@ -59,7 +59,7 @@ class ScreenUtil {
     Duration duration = const Duration(milliseconds: 10),
   ]) async {
     final binding = WidgetsFlutterBinding.ensureInitialized();
-    window ??= WidgetsBinding.instance.platformDispatcher.implicitView;
+    window ??= binding.window;
 
     if (window?.physicalGeometry.isEmpty == true) {
       return Future.delayed(duration, () async {
