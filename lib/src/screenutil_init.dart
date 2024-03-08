@@ -78,7 +78,7 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
       return data;
     }
 
-    return MediaQueryData.fromView(View.of(context));
+      return MediaQueryData.fromWindow(binding.window);
   }
 
   _updateTree(Element el) {
@@ -133,9 +133,7 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
             );
             final deviceData = MediaQuery.maybeOf(__context);
             final deviceSize = deviceData?.size ?? widget.designSize;
-            return MediaQuery(
-              data: MediaQueryData.fromView(View.of(__context)),
-              child: Container(
+            return Container(
                 width: deviceSize.width,
                 height: deviceSize.height,
                 child: FittedBox(
@@ -144,14 +142,12 @@ class _ScreenUtilInitState extends State<ScreenUtilInit>
                   child: Container(
                     width: widget.scaleByHeight
                         ? (deviceSize.height * widget.designSize.width) /
-                            widget.designSize.height
+                        widget.designSize.height
                         : deviceSize.width,
                     height: deviceSize.height,
                     child: widget.builder(__context, widget.child),
                   ),
-                ),
-              ),
-            );
+                ));
           },
         ),
       );
